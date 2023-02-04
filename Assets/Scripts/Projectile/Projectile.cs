@@ -40,6 +40,7 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
             _rb.velocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
+            _velocity = _rb.velocity;
             float angle = Mathf.Atan2(_rb.velocity[1], _rb.velocity[0]) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
