@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _angle;
     [SerializeField] private bool _spawnedByPlayer;
     [SerializeField] private int _ricochetLimit;
+    private Vector2 _velocity;
     private Rigidbody2D _rb;
 
     // Start is called before the first frame update
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = new Vector2(_speed * Mathf.Cos(_angle), _speed * Mathf.Sin(_angle));
         transform.Rotate(0, 0, _angle * 180 / Mathf.PI);
+        _velocity = _rb.velocity;
     }
 
     // Update is called once per frame
@@ -32,7 +34,9 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            UpdateAngle(-_angle);
+            _rb.velocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
+            float angle = Mathf.Atan2(_rb.velocity[1], _rb.velocity[0]) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else// if (collision.collider.TryGetComponent(out Damagable entity))
         {
@@ -45,13 +49,5 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             //entity.TakeDamage();
         } 
-    }
-
-    private void UpdateAngle(float newAngle)
-    {
-        _angle = newAngle;
-        _rb.velocity = new Vector2(_speed * Mathf.Cos(_angle), _speed * Mathf.Sin(_angle));
-        transform.eulerAngles = new Vector3(0, 0, 0);
-        transform.Rotate(0, 0, _angle * 180 / Mathf.PI);
     }
 }
