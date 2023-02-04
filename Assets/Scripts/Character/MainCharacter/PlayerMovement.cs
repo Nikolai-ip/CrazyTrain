@@ -13,13 +13,23 @@ public class PlayerMovement : MonoBehaviour
 
     private float _horizontal;
     public float speed = 8f;
+    public float speedInertia = 0.2f;
+    private int _accelerationCount = 0;
+    public int accelerateFrameLimit = 50;
+    private struct CurrentVelocity
+    {
+        public float X;
+        public float Y;
+    }
+
+    private CurrentVelocity _currentVelocity;
     public float jumpingPower = 16f;
     public float jumpSlowdownCoefficient = 0.2f;
     private bool _isFacingRight = true;
     
     void Update()
     {
-        rb.velocity = new Vector2(_horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(_currentVelocity.X, rb.velocity.y);
 
         if (!_isFacingRight && _horizontal > 0f)
         {
@@ -31,6 +41,31 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        UpdateVelocity();
+    }
+
+    private void UpdateVelocity()
+    {
+        if (Math.Abs(_horizontal) > 0f)
+        {
+            _currentVelocity.X = _horizontal * speed;
+        }
+        else
+        {
+            _currentVelocity.X = rb.velocity.x * speedInertia;
+        }
+    }
+
+    private void AccelerateCount()
+    {
+        if (_accelerationCount < accelerateFrameLimit)
+        {
+            _accelerationCount++;
+        }
+    }
+    
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
@@ -62,6 +97,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (context.performed)
+        {
+            _accelerationCount = 0;
+        }
+
+        if (context.canceled)
+        {
+            _accelerationCount = 0;
+        }
         _horizontal = context.ReadValue<Vector2>().x;
     }
 }
