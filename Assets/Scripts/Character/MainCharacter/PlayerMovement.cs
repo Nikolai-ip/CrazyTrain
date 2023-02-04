@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -12,21 +13,19 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private float _horizontal;
-    public float speed = 8f;
-    public float speedInertia = 0.2f;
-    private int _accelerationCount = 0;
-    public int accelerateFrameLimit = 50;
+    public float maxSpeed = 8f;
+    public float minSpeed = 0.1f;
+    public float speedInertia = 0.7f;
     private struct CurrentVelocity
     {
         public float X;
         public float Y;
     }
-
     private CurrentVelocity _currentVelocity;
     public float jumpingPower = 16f;
     public float jumpSlowdownCoefficient = 0.2f;
     private bool _isFacingRight = true;
-    
+
     void Update()
     {
         rb.velocity = new Vector2(_currentVelocity.X, rb.velocity.y);
@@ -50,22 +49,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Math.Abs(_horizontal) > 0f)
         {
-            _currentVelocity.X = _horizontal * speed;
+            _currentVelocity.X = maxSpeed * _horizontal;
         }
         else
         {
-            _currentVelocity.X = rb.velocity.x * speedInertia;
+            if (Math.Abs(_currentVelocity.X * (speedInertia * _horizontal)) < minSpeed)
+            {
+                _currentVelocity.X = 0f;
+            }
+            else
+            {
+                _currentVelocity.X *= speedInertia * _horizontal;
+            }
         }
     }
 
-    private void AccelerateCount()
-    {
-        if (_accelerationCount < accelerateFrameLimit)
-        {
-            _accelerationCount++;
-        }
-    }
-    
     public void Jump(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
@@ -97,15 +95,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            _accelerationCount = 0;
-        }
-
-        if (context.canceled)
-        {
-            _accelerationCount = 0;
-        }
         _horizontal = context.ReadValue<Vector2>().x;
     }
 }
