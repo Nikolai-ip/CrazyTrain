@@ -7,10 +7,12 @@ public class PlayerAim : MonoBehaviour
 {
     private bool isForwardRotate;
     private Transform aimTransform;
+    private Transform weaponTransform;
     private void Awake()
     {
         isForwardRotate = true;
         aimTransform = transform.Find("Aim");
+        weaponTransform = aimTransform.Find("Revolver");
     }
 
     // Start is called before the first frame update
@@ -37,7 +39,6 @@ public class PlayerAim : MonoBehaviour
             {
                 MirrorPlayer();
                 isForwardRotate = false;
-                angle = -1 * angle;
             }
         }
         else
@@ -46,7 +47,6 @@ public class PlayerAim : MonoBehaviour
             {
                 MirrorPlayer();
                 isForwardRotate = true;
-                angle = -1 * angle;
             }
         }
 
@@ -57,8 +57,8 @@ public class PlayerAim : MonoBehaviour
 
     void MirrorPlayer()
     {
-        transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
-        //aimTransform.localScale = new Vector2(-1 * aimTransform.localScale.x, aimTransform.localScale.y);
-        //transform.localScale = -1 * transform.localScale;
+        transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        aimTransform.localScale = new Vector3(-1 * aimTransform.localScale.x, aimTransform.localScale.y, aimTransform.localScale.z);
+        weaponTransform.localScale = new Vector3(weaponTransform.localScale.x, -1 * weaponTransform.localScale.y, weaponTransform.localScale.z);
     }
 }
