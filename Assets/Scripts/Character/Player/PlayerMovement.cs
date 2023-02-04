@@ -19,8 +19,10 @@ namespace Character.Player
         public int accelerateFrameLimit = 50;
     
         [SerializeField] private bool isHide = false;
+        [SerializeField] private float hideColliderSize = 0.5f;
         private Animator _animator;
-
+        private BoxCollider2D _boxCollider;
+        private Vector2 _defaultColliderSize;
         public event Action onPlayerMove;
 
         private struct CurrentVelocity
@@ -35,6 +37,8 @@ namespace Character.Player
 
         private void Start()
         {
+            _boxCollider = GetComponent<BoxCollider2D>();
+            _defaultColliderSize = _boxCollider.size;
             _animator = GetComponent<Animator>();
         }
 
@@ -101,6 +105,17 @@ namespace Character.Player
         {
             isHide = context.ReadValueAsButton();
             _animator.SetBool("IsHide", isHide);
+
+            if (isHide)
+            {
+                _boxCollider.size = new Vector2(_defaultColliderSize.x, hideColliderSize);
+                _boxCollider.offset = new Vector2(0.0f, (hideColliderSize - _defaultColliderSize.y) / 2.0f);
+            }
+            else
+            {
+                _boxCollider.size = _defaultColliderSize;
+                _boxCollider.offset = new Vector2(0.0f, 0.0f);
+            }
         }
     }
 }
