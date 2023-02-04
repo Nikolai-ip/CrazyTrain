@@ -1,14 +1,14 @@
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerAim : MonoBehaviour
 {
     private bool _isForwardRotate;
     private Transform _aimTransform;
     private Transform _weaponTransform;
-    [SerializeField] float angle;
+    [SerializeField] private float angle;
     public float AngleRad { get; private set; }
+
     private void Awake()
     {
         _isForwardRotate = true;

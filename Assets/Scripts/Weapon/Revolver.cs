@@ -6,5 +6,4 @@ public class Revolver : Weapon
     {
         animator = GetComponent<Animator>();
     }
-
 }

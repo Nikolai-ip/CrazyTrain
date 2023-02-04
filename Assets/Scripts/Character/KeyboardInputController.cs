@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,20 +6,33 @@ public class KeyboardInputController : MonoBehaviour
     [SerializeField] private MouseButton _shootKeyCode;
     [SerializeField] private KeyCode _hideKeyCode;
     private Player _player;
+    private HideController _hideController;
 
     private void Start()
     {
-        _player = GetComponent<Player>();   
+        _player = GetComponent<Player>();
+        _hideController = GetComponent<HideController>();
     }
-    void Update()
+
+    private void Update()
     {
-        CheckShootKeyCodeIsDown();
+        CheckShootKeyButtonDown();
+        CheckHideKeyButtonDown();
     }
-    private void CheckShootKeyCodeIsDown()
+
+    private void CheckShootKeyButtonDown()
     {
         if (Input.GetMouseButtonDown((int)_shootKeyCode))
         {
             _player.ShootCurrentWeapon();
         }
-    }    
+    }
+
+    private void CheckHideKeyButtonDown()
+    {
+        if (Input.GetKeyDown(_hideKeyCode))
+        {
+            _hideController.Hide();
+        }
+    }
 }

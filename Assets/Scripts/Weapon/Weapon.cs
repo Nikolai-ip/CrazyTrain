@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -13,6 +11,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
     [SerializeField] protected int shootTimeDelayMs;
     [SerializeField] protected bool canShoot = true;
     protected Animator animator;
+
     public void Shoot()
     {
         if (bulletPrefab != null && canShoot)
@@ -26,8 +25,8 @@ public abstract class Weapon : MonoBehaviour, Shootable
                 DelayBetweenShoot();
             }
         }
-
     }
+
     protected async void DelayBetweenShoot()
     {
         canShoot = false;
