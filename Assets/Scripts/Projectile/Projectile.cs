@@ -6,10 +6,12 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _angle;
+    public float Angle { set { _angle = value; } }
     [SerializeField] private bool _spawnedByPlayer;
     [SerializeField] private int _ricochetLimit;
     private Rigidbody2D _rb;
-
+    [SerializeField] private float _liveTime;
+    private float time = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +20,13 @@ public class Projectile : MonoBehaviour
         transform.Rotate(0, 0, _angle * 180 / Mathf.PI);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+        if (time > _liveTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

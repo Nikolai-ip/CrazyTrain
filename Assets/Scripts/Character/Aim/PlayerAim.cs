@@ -1,10 +1,12 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerAim : MonoBehaviour
 {
     private bool _isForwardRotate;
     private Transform _aimTransform;
-
+    [SerializeField] float angle;
+    public float AngleRad { get; private set; }
     private void Awake()
     {
         _isForwardRotate = true;
@@ -15,7 +17,8 @@ public class PlayerAim : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePosition - transform.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        AngleRad = angle / 180 * math.PI;
 
         if (_isForwardRotate)
         {
