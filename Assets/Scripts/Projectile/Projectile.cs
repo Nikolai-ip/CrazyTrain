@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Ricochet"), 2))
+        if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Ground"), 2))
         {
             if (_ricochetLimit-- == 0)
             {
@@ -41,7 +41,6 @@ public class Projectile : MonoBehaviour
             }
             Vector2 newVelocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
             float angle = Mathf.Atan2(newVelocity[1], newVelocity[0]) * Mathf.Rad2Deg;
-            Debug.Log(angle);
             if (angle > 30 || angle < -30)
             {
                 Destroy(gameObject);
