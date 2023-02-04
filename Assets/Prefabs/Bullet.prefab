@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 50
   _angle: 1.6
-  _spawnedByPlayer: 0
+  _spawnedByPlayer: 1
   _ricochetLimit: 5
   _liveTime: 4
 --- !u!50 &8460989322233557257
