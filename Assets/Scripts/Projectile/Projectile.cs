@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     private Rigidbody2D _rb;
     [SerializeField] private float _liveTime;
     private float time = 0;
+    private AudioSource _flybySource;
 
     // Start is called before the first frame update
     private void Start()
@@ -20,6 +21,8 @@ public class Projectile : MonoBehaviour
         _rb.velocity = new Vector2(_speed * Mathf.Cos(_angle), _speed * Mathf.Sin(_angle));
         transform.Rotate(0, 0, _angle * 180 / Mathf.PI);
         _velocity = _rb.velocity;
+
+        _flybySource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -48,6 +51,11 @@ public class Projectile : MonoBehaviour
             _rb.velocity = newVelocity;
             _velocity = newVelocity;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            
+            if (_flybySource.enabled)
+            {
+                _flybySource.Play();
+            }
         }
         else// if (collision.collider.TryGetComponent(out Damagable entity))
         {

@@ -13,13 +13,12 @@ namespace Character.Player
         private float _horizontal;
         public float maxSpeed = 8f;
         public float minSpeed = 0.1f;
-
-        public float speed = 8f;
+        
         public float speedInertia = 0.2f;
-        public int accelerateFrameLimit = 50;
-    
+
         [SerializeField] private bool isHide = false;
         private Animator _animator;
+        [SerializeField] private AudioSource jumpSource;
 
         public event Action onPlayerMove;
 
@@ -77,6 +76,7 @@ namespace Character.Player
             if (context.performed && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                jumpSource.Play();
             }
 
             if (context.canceled && rb.velocity.y > 0f)

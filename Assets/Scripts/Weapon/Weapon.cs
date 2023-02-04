@@ -12,6 +12,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
     [SerializeField] protected int shootTimeDelayMs;
     [SerializeField] protected bool canShoot = true;
     protected Animator animator;
+    [SerializeField] protected AudioSource gunshot;
 
     public void Shoot()
     {
@@ -19,6 +20,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
         {
             var bullet = Instantiate(bulletPrefab);
             bullet.transform.position = shootPoint.position;
+            gunshot.Play();
             if (bullet.TryGetComponent(out Projectile projectile))
             {
                 projectile.Angle = playerAim.AngleRad;
