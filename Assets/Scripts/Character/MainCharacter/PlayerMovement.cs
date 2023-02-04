@@ -1,0 +1,67 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public Rigidbody2D rb;
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+
+    private float _horizontal;
+    public float speed = 8f;
+    public float jumpingPower = 16f;
+    public float jumpSlowdownCoefficient = 0.2f;
+    private bool _isFacingRight = true;
+    
+    void Update()
+    {
+        rb.velocity = new Vector2(_horizontal * speed, rb.velocity.y);
+
+        if (!_isFacingRight && _horizontal > 0f)
+        {
+            Flip();
+        }
+        else if (_isFacingRight && _horizontal < 0f)
+        {
+            Flip();
+        }
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (context.performed && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        }
+
+        if (context.canceled && rb.velocity.y > 0f)
+        {
+            var velocity = rb.velocity;
+            velocity = new Vector2(velocity.x, velocity.y * jumpSlowdownCoefficient);
+            rb.velocity = velocity;
+        }
+    }
+    
+    private bool IsGrounded()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void Flip()
+    {
+        _isFacingRight = !_isFacingRight;
+        var transform1 = transform;
+        var localScale = transform1.localScale;
+        localScale.x *= -1f;
+        transform1.localScale = localScale;
+    }
+
+    public void Move(InputAction.CallbackContext context)
+    {
+        _horizontal = context.ReadValue<Vector2>().x;
+    }
+}
