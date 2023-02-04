@@ -383,10 +383,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1037291023914301073, guid: f6c3cf5a32d7ae04b92495f4e0cee2be, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1037291023914301075, guid: f6c3cf5a32d7ae04b92495f4e0cee2be, type: 3}
       propertyPath: m_Name
       value: Revolver

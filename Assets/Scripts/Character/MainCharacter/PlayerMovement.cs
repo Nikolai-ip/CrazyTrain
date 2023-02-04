@@ -31,14 +31,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(_currentVelocity.X, rb.velocity.y);
 
-        if (!_isFacingRight && _horizontal > 0f)
-        {
-            Flip();
-        }
-        else if (_isFacingRight && _horizontal < 0f)
-        {
-            Flip();
-        }
+        //if (!_isFacingRight && _horizontal > 0f)
+        //{
+        //    Flip();
+        //}
+        //else if (_isFacingRight && _horizontal < 0f)
+        //{
+        //    Flip();
+        //}
     }
 
     private void FixedUpdate()
