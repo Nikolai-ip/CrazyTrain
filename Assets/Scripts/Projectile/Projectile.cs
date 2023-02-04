@@ -39,8 +39,15 @@ public class Projectile : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            _rb.velocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
-            float angle = Mathf.Atan2(_rb.velocity[1], _rb.velocity[0]) * Mathf.Rad2Deg;
+            Vector2 newVelocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
+            float angle = Mathf.Atan2(newVelocity[1], newVelocity[0]) * Mathf.Rad2Deg;
+            Debug.Log(angle);
+            if (angle > 30 || angle < -30)
+            {
+                Destroy(gameObject);
+            }
+            _rb.velocity = newVelocity;
+            _velocity = newVelocity;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else// if (collision.collider.TryGetComponent(out Damagable entity))
@@ -48,7 +55,7 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.tag == "Enemy" && !_spawnedByPlayer || collision.gameObject.tag == "Player" && _spawnedByPlayer)
             {
                 Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-                _rb.velocity = new Vector2(_speed * Mathf.Cos(_angle), _speed * Mathf.Sin(_angle));
+                _rb.velocity = _velocity;
                 return;
             }
             Destroy(gameObject);

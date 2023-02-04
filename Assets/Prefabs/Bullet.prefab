@@ -99,11 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325649c5bdf31494f825b915a7cc1bea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 100
+  _speed: 50
   _angle: 1.6
-  _spawnedByPlayer: 0
-  _ricochetLimit: 0
-  _liveTime: 1
+  _spawnedByPlayer: 1
+  _ricochetLimit: 5
+  _liveTime: 4
 --- !u!50 &8460989322233557257
 Rigidbody2D:
   serializedVersion: 4
@@ -123,7 +123,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &8460989322233557256
 BoxCollider2D:
