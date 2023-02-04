@@ -1,16 +1,19 @@
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerAim : MonoBehaviour
 {
     private bool _isForwardRotate;
     private Transform _aimTransform;
+    private Transform _weaponTransform;
     [SerializeField] float angle;
     public float AngleRad { get; private set; }
     private void Awake()
     {
         _isForwardRotate = true;
         _aimTransform = transform.Find("Aim");
+        _weaponTransform = _aimTransform.Find("Revolver");
     }
 
     private void Update()
@@ -26,7 +29,6 @@ public class PlayerAim : MonoBehaviour
             {
                 MirrorPlayer();
                 _isForwardRotate = false;
-                angle = -1 * angle;
             }
         }
         else
@@ -35,7 +37,6 @@ public class PlayerAim : MonoBehaviour
             {
                 MirrorPlayer();
                 _isForwardRotate = true;
-                angle = -1 * angle;
             }
         }
 
@@ -45,5 +46,7 @@ public class PlayerAim : MonoBehaviour
     private void MirrorPlayer()
     {
         transform.localScale = new Vector2(-1 * transform.localScale.x, transform.localScale.y);
+        _aimTransform.localScale = new Vector3(-1 * _aimTransform.localScale.x, _aimTransform.localScale.y, _aimTransform.localScale.z);
+        _weaponTransform.localScale = new Vector3(_weaponTransform.localScale.x, -1 * _weaponTransform.localScale.y, _weaponTransform.localScale.z);
     }
 }
