@@ -16,9 +16,11 @@ public abstract class Weapon : MonoBehaviour, Shootable
     protected bool isReloading = true;
     protected Animator animator;
     [SerializeField] protected AudioSource gunshot;
+    [SerializeField] protected AudioSource emtyShootSound;
     public event Action<bool, int> onReloadButtonIsPressed;
     public virtual void Shoot()
     {
+
         if (bulletPrefab != null && canShoot && currentBulletAmount>0)
         {
             var bullet = Instantiate(bulletPrefab);

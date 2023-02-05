@@ -37,6 +37,10 @@ public class Revolver : Weapon
                 base.Shoot();
             }
         }
+        if (currentBulletAmount == 0)
+        {
+            emtyShootSound.Play();
+        }
     }
     private void Start()
     {

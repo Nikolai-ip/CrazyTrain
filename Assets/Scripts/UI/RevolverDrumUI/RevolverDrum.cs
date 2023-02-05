@@ -11,6 +11,8 @@ public class RevolverDrum : MonoBehaviour
     [SerializeField] GameObject RevolverDrumObject;
     [SerializeField] private bool _canPushBullet=false;
     public event Action<bool> onCanPushBulletChanged;
+    private AudioSource _pushBulletAudio;
+
     public bool IsActive { get;private set; }
     public bool CanPushBullet {
         get { return _canPushBullet; }
@@ -22,7 +24,8 @@ public class RevolverDrum : MonoBehaviour
     [SerializeField] private float _pushBulletBorder;
     void Start()
     {
-        _rb= GetComponent<Rigidbody2D>();
+        _pushBulletAudio = GetComponent<AudioSource>(); 
+        _rb = GetComponent<Rigidbody2D>();
         RevolverDrumObject.SetActive(false);
         PlayerWeaponController player = FindObjectOfType<PlayerWeaponController>();
         player.CurrentWeapon.onReloadButtonIsPressed += ShowRevolverDrum;
@@ -61,8 +64,8 @@ public class RevolverDrum : MonoBehaviour
     {
         if (!_bullets[((int)(_rb.rotation + 10) / 60) % 6].IsEnable)
         {
-            Debug.Log(((int)(_rb.rotation + 10) / 60) % 6);
             _bullets[((int)(_rb.rotation + 10) / 60) % 6].Enable();
+            _pushBulletAudio.Play();
             return true;
         }
         return false;
