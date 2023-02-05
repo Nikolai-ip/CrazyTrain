@@ -13,16 +13,16 @@ namespace Character.Player
         private float _horizontal;
         public float maxSpeed = 8f;
         public float minSpeed = 0.1f;
-
-        public float speed = 8f;
+        
         public float speedInertia = 0.2f;
-        public int accelerateFrameLimit = 50;
-    
+
         [SerializeField] private bool isHide = false;
         [SerializeField] private float hideColliderSize = 0.5f;
         private Animator _animator;
         private BoxCollider2D _boxCollider;
         private Vector2 _defaultColliderSize;
+        [SerializeField] private AudioSource jumpSource;
+
         public event Action onPlayerMove;
 
         private struct CurrentVelocity
@@ -81,6 +81,7 @@ namespace Character.Player
             if (context.performed && IsGrounded())
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+                jumpSource.Play();
             }
 
             if (context.canceled && rb.velocity.y > 0f)
