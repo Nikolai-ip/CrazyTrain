@@ -52,8 +52,7 @@ public class PlayerStats : MonoBehaviour
             maxHealth += 1;
             health = maxHealth;
 
-            if (onHealthChangedCallback != null)
-                onHealthChangedCallback.Invoke();
+            onHealthChangedCallback?.Invoke();
         }   
     }
 
@@ -61,7 +60,6 @@ public class PlayerStats : MonoBehaviour
     {
         health = Mathf.Clamp(health, 0, maxHealth);
 
-        if (onHealthChangedCallback != null)
-            onHealthChangedCallback.Invoke();
+        onHealthChangedCallback?.Invoke();
     }
 }
