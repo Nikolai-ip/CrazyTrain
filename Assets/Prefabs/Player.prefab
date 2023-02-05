@@ -192,10 +192,10 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2162962132709398858}
-        m_TargetAssemblyTypeName: Character.Player.Player, Assembly-CSharp
+      - m_Target: {fileID: 2014243953}
+        m_TargetAssemblyTypeName: PlayerWeaponController, Assembly-CSharp
         m_MethodName: ShootCurrentWeapon
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -280,10 +280,10 @@ MonoBehaviour:
     m_ActionName: Player/Hide[/Keyboard/leftCtrl]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2162962132709398858}
-        m_TargetAssemblyTypeName: Character.Player.Player, Assembly-CSharp
+      - m_Target: {fileID: 2014243953}
+        m_TargetAssemblyTypeName: PlayerWeaponController, Assembly-CSharp
         m_MethodName: ReloadCurrentWeapon
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -294,6 +294,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 36a97f0a-d902-4127-a3e1-90df4c05b877
     m_ActionName: Player/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2014243953}
+        m_TargetAssemblyTypeName: PlayerWeaponController, Assembly-CSharp
+        m_MethodName: ReloadCurrentWeapon
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6aabfa64-a796-499c-ab89-e10068b13211
+    m_ActionName: Player/PushBullet[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -402,8 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  _currentWeapon: {fileID: 0}
---- !u!114 &3349436684591512220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -736,9 +750,14 @@ MonoBehaviour:
   shootPoint: {fileID: 2162962132661004404}
   playerAim: {fileID: 2162962132709398860}
   bulletAmount: 6
+  currentBulletAmount: 0
   shootTimeDelayMs: 500
   canShoot: 1
   gunshot: {fileID: 661155661}
+  _revolverDrumUI: {fileID: 0}
+  _canPutAwayBullet: 1
+  _canPushBullet: 1
+  _timeDelayBetweenPushBulletMS: 0
 --- !u!82 &661155661
 AudioSource:
   m_ObjectHideFlags: 0
@@ -749,7 +768,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c6da2efc620ae1240adadbccda64fdab, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8e904e6f2de1cf24bbcce6497125e62c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
