@@ -43,8 +43,9 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
             }
             Vector2 newVelocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
-            float angle = Mathf.Atan2(newVelocity[1], newVelocity[0]) * Mathf.Rad2Deg;
-            if (angle > 30 || angle < -30)
+            float angle = Vector2.Angle(_velocity, -collision.GetContact(0).normal);
+            Debug.Log(angle);
+            if ((angle > 0 && angle < 60) || ( angle < 0 && angle > -60))
             {
                 Destroy(gameObject);
             }
