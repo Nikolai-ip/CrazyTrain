@@ -5,32 +5,38 @@ using UnityEngine;
 public class Revolver : Weapon
 {
     [SerializeField] RevolverDrum _revolverDrumUI;
-    [SerializeField] private bool _canPutAwayBullet = true;
-    [SerializeField] private bool _canPushBullet = true;
     [SerializeField] int _timeDelayBetweenPushBulletMS;
+    private DateTime _lastUnsuccesfulPushTime;
+
     public override void PushBullet()
     {
-        if (_revolverDrumUI.CanPushBullet && currentBulletAmount<bulletAmount && _canPushBullet)
+        if (_revolverDrumUI.CanPushBullet && currentBulletAmount<bulletAmount && (DateTime.Now - _lastUnsuccesfulPushTime).TotalMilliseconds > _timeDelayBetweenPushBulletMS)
         {
-            _revolverDrumUI.PushBullet();
-            currentBulletAmount++;
-            DelayBetween(_canPushBullet);
+            if(_revolverDrumUI.PushBullet())
+                currentBulletAmount++;
+        } else if (currentBulletAmount < bulletAmount)
+        {
+            _lastUnsuccesfulPushTime = DateTime.Now;
         }
     }
-    public override void Shoot()
+    public override async void Shoot()
     {
-        base.Shoot();
-        if (currentBulletAmount>0 && _revolverDrumUI.IsActive && _canPutAwayBullet)
+        if (currentBulletAmount > 0  && base.canShoot)
         {
-            _revolverDrumUI.PutAwayOneBullet();
-            DelayBetween(_canPutAwayBullet);
+            if (!_revolverDrumUI.IsActive)
+            {
+                _revolverDrumUI.ShowRevolverDrum(true, currentBulletAmount);
+                base.Shoot();
+                await Task.Delay(100);
+                _revolverDrumUI.PutAwayOneBullet();
+                await Task.Delay(400);
+                _revolverDrumUI.ShowRevolverDrum(false, currentBulletAmount);
+            } else
+            {
+                _revolverDrumUI.PutAwayOneBullet();
+                base.Shoot();
+            }
         }
-    }
-    private async void DelayBetween(bool flag)
-    {
-        flag = false;
-        await Task.Delay(_timeDelayBetweenPushBulletMS);
-        flag = true;
     }
     private void Start()
     {

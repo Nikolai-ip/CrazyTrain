@@ -27,7 +27,7 @@ public class RevolverDrum : MonoBehaviour
         PlayerWeaponController player = FindObjectOfType<PlayerWeaponController>();
         player.CurrentWeapon.onReloadButtonIsPressed += ShowRevolverDrum;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         _rb.rotation += _rotateSpeed;
         CanPushBullet = IsCanPushBullet();
@@ -57,11 +57,15 @@ public class RevolverDrum : MonoBehaviour
         else { RevolverDrumObject.SetActive(false); IsActive = false; }
 
     }
-    public void PushBullet()
+    public bool PushBullet()
     {
-        Debug.Log((int)_rb.rotation / 60);
-        if (!_bullets[(int)_rb.rotation / 60].IsEnable)
-            _bullets[(int)_rb.rotation / 60].Enable();
+        if (!_bullets[((int)(_rb.rotation + 10) / 60) % 6].IsEnable)
+        {
+            Debug.Log(((int)(_rb.rotation + 10) / 60) % 6);
+            _bullets[((int)(_rb.rotation + 10) / 60) % 6].Enable();
+            return true;
+        }
+        return false;
     }
     public void PutAwayOneBullet()
     {
