@@ -63,6 +63,9 @@
                     "name": "PushBullet",
                     "type": "Button",
                     "id": "6aabfa64-a796-499c-ab89-e10068b13211",
+                    "name": "GetDamage",
+                    "type": "Button",
+                    "id": "8aa64c8a-61ac-44ea-ace0-e0b747ab19de",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -353,6 +356,12 @@
                     "processors": "",
                     "groups": "",
                     "action": "PushBullet",
+                    "id": "21ffc315-f995-4465-a369-d5aa127228ef",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GetDamage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
