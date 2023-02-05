@@ -586,6 +586,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2162962132709398864, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398864, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -643,7 +647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
       propertyPath: _timeDelayBetweenPushBulletMS
-      value: 0
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
