@@ -87,7 +87,7 @@ Rigidbody2D:
   m_Mass: 0.9936
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -292,7 +292,7 @@ MonoBehaviour:
   isHide: 0
   hideColliderSize: 1
   jumpSource: {fileID: 7349691672036563081}
-  jumpingPower: 16
+  jumpingPower: 8
   jumpSlowdownCoefficient: 0.8
 --- !u!212 &2162962132709398866
 SpriteRenderer:

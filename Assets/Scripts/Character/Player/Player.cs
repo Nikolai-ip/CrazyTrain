@@ -1,3 +1,5 @@
+using System;
+using UI;
 using UnityEngine;
 
 namespace Character.Player
@@ -10,6 +12,7 @@ namespace Character.Player
 
         private void Start()
         {
+            Health = 10;
             CurrentWeapon = GetComponentInChildren<Weapon>();
         }
 
