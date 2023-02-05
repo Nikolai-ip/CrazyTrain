@@ -247,7 +247,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4791455498443027911}
-  - {fileID: 357875521520293474}
   - {fileID: 4791455498405539397}
   - {fileID: 4791455497843087724}
   - {fileID: 4791455498978912316}
@@ -844,7 +843,6 @@ PlatformEffector2D:
   m_UseSideBounce: 0
   m_SideArc: 1
 --- !u!1001 &691805518
---- !u!1001 &3045185940629958930
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2

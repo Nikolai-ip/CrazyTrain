@@ -6,7 +6,7 @@ namespace Character.Player
 {
     public class Player : MonoBehaviour, Damagable
     {
-
+        [SerializeField] private Weapon _currentWeapon;
         public Weapon CurrentWeapon { private get => _currentWeapon; set => _currentWeapon = value; }
 
         private void Start()
