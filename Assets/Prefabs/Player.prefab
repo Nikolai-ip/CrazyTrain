@@ -290,6 +290,7 @@ MonoBehaviour:
   minSpeed: 0.1
   speedInertia: 0.2
   isHide: 0
+  hideColliderSize: 1
   jumpSource: {fileID: 7349691672036563081}
   jumpingPower: 16
   jumpSlowdownCoefficient: 0.8
