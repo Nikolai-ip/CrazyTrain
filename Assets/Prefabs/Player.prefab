@@ -47,10 +47,9 @@ GameObject:
   - component: {fileID: 2162962132709398866}
   - component: {fileID: 2162962132709398860}
   - component: {fileID: 2162962132709398858}
+  - component: {fileID: 3349436684591512220}
   - component: {fileID: 7349691672036563081}
-  - component: {fileID: 2014243944}
-  - component: {fileID: 2014243955}
-  - component: {fileID: 2014243953}
+  - component: {fileID: 5877788350824608635}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -90,7 +89,7 @@ Rigidbody2D:
   m_Mass: 0.9936
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -161,7 +160,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2014243955}
+      - m_Target: {fileID: 3349436684591512220}
         m_TargetAssemblyTypeName: LadderMovement, Assembly-CSharp
         m_MethodName: LadderMove
         m_Mode: 0
@@ -339,7 +338,7 @@ MonoBehaviour:
   isHide: 0
   hideColliderSize: 1
   jumpSource: {fileID: 7349691672036563081}
-  jumpingPower: 16
+  jumpingPower: 8
   jumpSlowdownCoefficient: 0.8
 --- !u!212 &2162962132709398866
 SpriteRenderer:
@@ -419,6 +418,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162962132709398869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867cd5352a798a8499086778a07edea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2162962132709398862}
 --- !u!82 &7349691672036563081
 AudioSource:
   m_ObjectHideFlags: 0
@@ -544,23 +555,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2162962132709398869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 867cd5352a798a8499086778a07edea7, type: 3}
+  m_Script: {fileID: 11500000, guid: 718d4e556695adc47adc414d65218e76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2162962132709398862}
---- !u!114 &2014243953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2162962132709398869}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27a44e4ab5d2edf4cbd3d73e485af401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentWeapon: {fileID: 0}
+  killLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  player: {fileID: 2162962132709398858}
 --- !u!1 &2162962133140034377
 GameObject:
   m_ObjectHideFlags: 0

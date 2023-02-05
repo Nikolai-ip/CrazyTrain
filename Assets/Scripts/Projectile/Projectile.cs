@@ -57,7 +57,7 @@ public class Projectile : MonoBehaviour
                 _flybySource.Play();
             }
         }
-        else// if (collision.collider.TryGetComponent(out Damagable entity))
+        else if (collision.collider.TryGetComponent(out Damagable entity))
         {
             if (collision.gameObject.tag == "Enemy" && !_spawnedByPlayer || collision.gameObject.tag == "Player" && _spawnedByPlayer)
             {
@@ -66,7 +66,7 @@ public class Projectile : MonoBehaviour
                 return;
             }
             Destroy(gameObject);
-            //entity.TakeDamage();
+            entity.TakeDamage();
         }
     }
 }
