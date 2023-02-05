@@ -1,3 +1,5 @@
+using System;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +15,7 @@ namespace Character.Player
 
         private void Start()
         {
+            Health = 10;
             CurrentWeapon = GetComponentInChildren<Weapon>();
         }
 
