@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shelter : MonoBehaviour, Damagable
+public class Shelter : Entity, Damagable
 {
-    [SerializeField] private int _initiaHp;
-    [SerializeField] private int _hp;
+    [SerializeField] private int _initiaHealth;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private List<Sprite> _sprites;
 
@@ -16,9 +15,9 @@ public class Shelter : MonoBehaviour, Damagable
     }
     public void TakeDamage()
     {
-        float ratio = --_hp;
+        float ratio = --health;
         if (ratio < 0) Destroy(gameObject);
-        ratio /= _initiaHp;
+        ratio /= _initiaHealth;
         if (ratio > 1) ratio = 1;
         _spriteRenderer.sprite = _sprites[(int)(ratio * (_sprites.Count - 1))];
     }
