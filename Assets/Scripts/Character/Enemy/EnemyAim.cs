@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyAim : Aim
 {
-    [SerializeField] private GameObject playerObj = null;
+    private GameObject playerObj = null;
     private Transform _playerTransform;
     private Vector3 _playerPosition;
     protected override void InitPosition()
     {
+        playerObj = GameObject.FindGameObjectWithTag("Player");
         _playerTransform = playerObj.transform;
         _playerPosition = _playerTransform.position;
         //if (playerObj is null) return;
