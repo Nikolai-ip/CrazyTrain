@@ -2,6 +2,6 @@ public interface Damagable
 {
     public void TakeDamage();
 
-    public void InstantlyDie();
+    //public void InstantlyDie();
 
 }

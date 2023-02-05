@@ -18,7 +18,7 @@ public class InstaKill : MonoBehaviour
     {
         if (_isTouching)
         {
-            _damageable.InstantlyDie();
+            //_damageable.InstantlyDie();
         }
     }
 

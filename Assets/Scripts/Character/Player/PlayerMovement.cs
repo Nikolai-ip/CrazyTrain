@@ -110,7 +110,6 @@ namespace Character.Player
             {
                 _horizontal = horizontal;
             }
-            Debug.Log(_horizontal);
         }
 
         private float Sqr(float a)
