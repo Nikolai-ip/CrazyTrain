@@ -99,7 +99,23 @@ namespace Character.Player
 
         public void Move(InputAction.CallbackContext context)
         {
-            _horizontal = context.ReadValue<Vector2>().x;
+            var horizontal = context.ReadValue<Vector2>().x;
+            var vertical = context.ReadValue<Vector2>().y;
+            if (horizontal + vertical > 1)
+            {
+                _horizontal =
+                    (float)Math.Sqrt(2 * Sqr(horizontal) + 2 * Sqr(vertical) - 1);
+            }
+            else
+            {
+                _horizontal = horizontal;
+            }
+            Debug.Log(_horizontal);
+        }
+
+        private float Sqr(float a)
+        {
+            return a * a;
         }
     
         public void Hide(InputAction.CallbackContext context)

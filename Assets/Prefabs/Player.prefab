@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2162962132709398866}
   - component: {fileID: 2162962132709398860}
   - component: {fileID: 2162962132709398858}
+  - component: {fileID: 3349436684591512220}
   - component: {fileID: 7349691672036563081}
   m_Layer: 0
   m_Name: Player
@@ -149,6 +150,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2162962132709398867}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3349436684591512220}
+        m_TargetAssemblyTypeName: LadderMovement, Assembly-CSharp
+        m_MethodName: LadderMove
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -373,6 +386,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   _currentWeapon: {fileID: 0}
+--- !u!114 &3349436684591512220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2162962132709398869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867cd5352a798a8499086778a07edea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2162962132709398862}
 --- !u!82 &7349691672036563081
 AudioSource:
   m_ObjectHideFlags: 0
