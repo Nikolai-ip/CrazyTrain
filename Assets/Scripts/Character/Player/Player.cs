@@ -8,14 +8,11 @@ namespace Character.Player
     public class Player : MonoBehaviour, Damagable
     {
         [SerializeField] private Weapon _currentWeapon;
-        [SerializeField] private delegate void OnHealthChangedDelegate();
-        [SerializeField] private OnHealthChangedDelegate onHealthChangedCallback;
 
         public Weapon CurrentWeapon { private get => _currentWeapon; set => _currentWeapon = value; }
 
         private void Start()
         {
-            Health = 10;
             CurrentWeapon = GetComponentInChildren<Weapon>();
         }
 
