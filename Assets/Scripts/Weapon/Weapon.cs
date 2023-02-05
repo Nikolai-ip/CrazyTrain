@@ -8,7 +8,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
     [SerializeField] protected float damage;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform shootPoint;
-    [SerializeField] protected PlayerAim playerAim;
+    [SerializeField] protected Aim playerAim;
     [SerializeField] protected int bulletAmount;
     [SerializeField] protected int currentBulletAmount;
     [SerializeField] protected int shootTimeDelayMs;
@@ -17,6 +17,12 @@ public abstract class Weapon : MonoBehaviour, Shootable
     protected Animator animator;
     [SerializeField] protected AudioSource gunshot;
     public event Action<bool, int> onReloadButtonIsPressed;
+
+    public void Awake()
+    {
+        playerAim = GetComponentInParent<Aim>();
+    }
+
     public virtual void Shoot()
     {
         if (bulletPrefab != null && canShoot && currentBulletAmount>0)

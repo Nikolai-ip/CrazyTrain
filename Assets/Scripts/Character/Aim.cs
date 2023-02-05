@@ -14,7 +14,7 @@ public abstract class Aim : MonoBehaviour
     private void Awake()
     {
         _aimTransform = transform.Find("Aim");
-        _weaponTransform = _aimTransform.Find("Revolver");
+        _weaponTransform = _aimTransform.GetComponentInChildren<Transform>();
         InitPosition();
     }
 
