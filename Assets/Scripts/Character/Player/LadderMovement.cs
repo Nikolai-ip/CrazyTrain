@@ -1,32 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LadderMovement : MonoBehaviour
 {
-    private float vertical;
-    private float speed = 8f;
-    private bool isLadder;
-    private bool isClimbing;
+    private float _vertical;
+    private float _speed = 8f;
+    private bool _isLadder;
+    private bool _isClimbing;
 
     [SerializeField] private Rigidbody2D rb;
 
     void Update()
     {
-        vertical = Input.GetAxisRaw("Vertical");
 
-        if (isLadder && Mathf.Abs(vertical) > 0f)
+        if (_isLadder && Mathf.Abs(_vertical) > 0f)
         {
-            isClimbing = true;
+            _isClimbing = true;
         }
     }
 
     private void FixedUpdate()
     {
-        if (isClimbing)
+        if (_isClimbing)
         {
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
+            rb.velocity = new Vector2(rb.velocity.x, _vertical * _speed);
         }
         else
         {
@@ -38,7 +38,7 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            isLadder = true;
+            _isLadder = true;
         }
     }
 
@@ -46,8 +46,13 @@ public class LadderMovement : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            isLadder = false;
-            isClimbing = false;
+            _isLadder = false;
+            _isClimbing = false;
         }
+    }
+
+    public void LadderMove(InputAction.CallbackContext context)
+    {
+        _vertical = context.ReadValue<Vector2>().y;
     }
 }
