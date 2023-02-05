@@ -20,7 +20,7 @@ public class EnemyRevolver : Weapon
             _lastUnsuccesfulPushTime = DateTime.Now;
         }
     }
-    public override async void Shoot()
+    public override void Shoot()
     {
         base.Shoot();
 

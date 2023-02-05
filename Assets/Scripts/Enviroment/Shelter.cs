@@ -21,4 +21,9 @@ public class Shelter : Entity, Damagable
         if (ratio > 1) ratio = 1;
         _spriteRenderer.sprite = _sprites[(int)(ratio * (_sprites.Count - 1))];
     }
+
+    protected override void Die()
+    {
+       
+    }
 }
