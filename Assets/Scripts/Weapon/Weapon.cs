@@ -7,13 +7,19 @@ public abstract class Weapon : MonoBehaviour, Shootable
     [SerializeField] protected float damage;
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform shootPoint;
-    [SerializeField] protected PlayerAim playerAim;
+    [SerializeField] protected Aim characterAim;
     [SerializeField] protected int bulletAmount;
     [SerializeField] protected int shootTimeDelayMs;
     [SerializeField] protected bool canShoot = true;
     protected Animator animator;
     [SerializeField] protected AudioSource gunshot;
 
+    private void Awake()
+    {
+
+        characterAim = GetComponentInParent<Aim>();
+        Debug.Log(characterAim.gameObject.name);
+    }
     public void Shoot()
     {
         if (bulletPrefab != null && canShoot)
@@ -23,7 +29,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
             gunshot.Play();
             if (bullet.TryGetComponent(out Projectile projectile))
             {
-                projectile.Angle = playerAim.AngleRad;
+                projectile.Angle = characterAim.AngleRad;
                 animator.SetTrigger("Shoot");
                 DelayBetweenShoot();
             }
