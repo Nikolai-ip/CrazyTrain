@@ -521,6 +521,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 661155661, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e904e6f2de1cf24bbcce6497125e62c, type: 3}
     - target: {fileID: 2162962132709398862, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
       propertyPath: m_GravityScale
       value: 4
