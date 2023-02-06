@@ -15,7 +15,9 @@ GameObject:
   - component: {fileID: 6067319338118525801}
   - component: {fileID: 3117813773898053765}
   - component: {fileID: 3183300776251010373}
-  m_Layer: 0
+  - component: {fileID: 2386109350607208894}
+  - component: {fileID: 1164375854}
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -135,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b85660b7fbbead44ca21bf44d711e83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
+  maxSpeed: 0.2
   minSpeed: 0.1
   distanceToShoot: 5
   distanceToMove: 10
@@ -177,15 +179,44 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 4
+  m_LinearDrag: 2.31
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
+--- !u!114 &2386109350607208894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190187629886879328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!114 &1164375854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6190187629886879328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e03139d984bc943bad4aaf0fe4eaeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
+  delayDieTime: 5
 --- !u!1 &7811168115603893583
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549732634633973394}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -272,6 +303,14 @@ PrefabInstance:
     - target: {fileID: 1037291023914301075, guid: b01ecf9a7595db34aaeff119bdd597a2, type: 3}
       propertyPath: m_Name
       value: RevolverEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037291023914301075, guid: b01ecf9a7595db34aaeff119bdd597a2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7288824772997503351, guid: b01ecf9a7595db34aaeff119bdd597a2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b01ecf9a7595db34aaeff119bdd597a2, type: 3}

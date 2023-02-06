@@ -28,8 +28,6 @@ public class MoveState : BaseState
     public override void Enter()
     {
         base.Enter();
-
-
     }
 
     public override void UpdateLogic()

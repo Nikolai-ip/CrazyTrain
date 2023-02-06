@@ -1,7 +1,9 @@
+using Character.Player;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : Entity, Damagable
@@ -23,8 +25,10 @@ public class Enemy : Entity, Damagable
     {
         GetComponent<StateMachine>().enabled= false;
         GetComponent<EnemyAim>().enabled= false;
+        GetComponentInChildren<EnemyRevolver>().GetComponent<SpriteRenderer>().enabled= false;
         GetComponent<BoxCollider2D>().enabled= false;
-        GetComponentInChildren<EnemyRevolver>().GetComponent<SpriteRenderer>().enabled= false;  
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
+        //Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectOfType<Player>().GetComponent<BoxCollider2D>());
         if (new System.Random().Next(0, 100) > 50)
             _animator.SetTrigger("DieHead");
         else
@@ -34,7 +38,8 @@ public class Enemy : Entity, Damagable
     private async void DelayDie()
     {
         await Task.Delay(delayDieTime*1000);
-        Destroy(gameObject);
+        if (gameObject != null && !gameObject.IsDestroyed())
+            Destroy(gameObject);
     }
    
 }

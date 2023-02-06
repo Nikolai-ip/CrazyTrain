@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
             }
             Vector2 newVelocity = Vector2.Reflect(_velocity, collision.GetContact(0).normal);
             float angle = Vector2.Angle(_velocity, -collision.GetContact(0).normal);
-            if ((angle > 0 && angle < 60) || ( angle < 0 && angle > -60))
+            if ((angle > 0 && angle < 30) || ( angle < 0 && angle > -30))
             {
                 Destroy(gameObject);
             }
