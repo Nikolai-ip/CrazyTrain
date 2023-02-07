@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Character.Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Weapon : MonoBehaviour, Shootable
 {
@@ -18,6 +19,8 @@ public abstract class Weapon : MonoBehaviour, Shootable
     [SerializeField] protected AudioSource gunshot;
     [SerializeField] protected AudioSource emtyShootSound;
     public event Action<bool, int> onReloadButtonIsPressed;
+    [SerializeField] UnityEvent _onShoot;
+
 
     public void Awake()
     {
@@ -34,6 +37,7 @@ public abstract class Weapon : MonoBehaviour, Shootable
             gunshot.Play();
             if (bullet.TryGetComponent(out Projectile projectile))
             {
+                _onShoot?.Invoke();
                 projectile.Angle = playerAim.AngleRad;
                 animator.SetTrigger("Shoot");
                 DelayBetweenShoot();

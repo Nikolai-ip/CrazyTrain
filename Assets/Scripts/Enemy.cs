@@ -9,9 +9,19 @@ using UnityEngine;
 public class Enemy : Entity, Damagable
 {
     Animator _animator;
+    private StateMachine _stateMachine;
+    private EnemyAim _enemyAim;
+    private SpriteRenderer _enemyRevolverSR;
+    private BoxCollider2D _boxCollider;
+    private Rigidbody2D _rb;
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _stateMachine = GetComponent<StateMachine>();
+        _enemyAim = GetComponent<EnemyAim>();
+        _enemyRevolverSR = GetComponentInChildren<EnemyRevolver>().GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
     public void TakeDamage()
     {
@@ -23,12 +33,11 @@ public class Enemy : Entity, Damagable
     }
     protected override void Die()
     {
-        GetComponent<StateMachine>().enabled= false;
-        GetComponent<EnemyAim>().enabled= false;
-        GetComponentInChildren<EnemyRevolver>().GetComponent<SpriteRenderer>().enabled= false;
-        GetComponent<BoxCollider2D>().enabled= false;
-        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-        //Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), FindObjectOfType<Player>().GetComponent<BoxCollider2D>());
+        _stateMachine.enabled= false;
+        _enemyAim.enabled= false;
+        _enemyRevolverSR.enabled= false;
+        _boxCollider.enabled= false;
+        _rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         if (new System.Random().Next(0, 100) > 50)
             _animator.SetTrigger("DieHead");
         else
@@ -38,7 +47,7 @@ public class Enemy : Entity, Damagable
     private async void DelayDie()
     {
         await Task.Delay(delayDieTime*1000);
-        if (gameObject != null && !gameObject.IsDestroyed())
+        if (gameObject != null)
             Destroy(gameObject);
     }
    

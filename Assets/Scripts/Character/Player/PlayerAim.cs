@@ -14,10 +14,9 @@ namespace Character.Player
 
         public void ChangeAngle(InputAction.CallbackContext context)
         {
-            // Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition /*rawMousePosition*/);
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        
-            MoveAim(mousePosition);
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());   
+            if (mousePosition != null)
+                MoveAim(mousePosition);
         }
 
     }

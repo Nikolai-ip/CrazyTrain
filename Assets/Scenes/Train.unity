@@ -1494,6 +1494,7 @@ GameObject:
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1775,6 +1776,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6f571f3b7df41c44aadfb82f7a45359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camTransform: {fileID: 0}
+  shakeDuration: 0.02
+  shakeAmount: 0.1
+  decreaseFactor: 1
 --- !u!1 &521005604 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6190187629886879328, guid: f737189028f56134082acbf90cefb9a5, type: 3}
@@ -4057,7 +4074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902894883}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8, y: -0.09, z: 0}
+  m_LocalPosition: {x: 0.852, y: -0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4472,7 +4489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hitPoint: {fileID: 1902894884}
   _hitRadius: 0.42
-  _timeBetweenHit: 1
+  _timeBetweenHit: 0.3
   _hitSound: {fileID: 2014243955}
 --- !u!82 &2014243955
 AudioSource:
@@ -4570,6 +4587,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2014243957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431564171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b076e99fb0e071043a31216fe09f7623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeColor: {r: 0.7254902, g: 0.21568628, b: 0.21568628, a: 1}
+  _timeChangeColor: 0.3
 --- !u!1 &2028575850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6190187629886879328, guid: f737189028f56134082acbf90cefb9a5, type: 3}
@@ -5092,6 +5123,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420036}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShakeCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2014243957}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeColorForWhile
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraShake, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ColorChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398858, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onTakeDamage.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2162962132709398863, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5176,6 +5263,18 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398866, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398866, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962132709398866, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2162962132709398869, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5184,6 +5283,34 @@ PrefabInstance:
       propertyPath: _revolverDrumUI
       value: 
       objectReference: {fileID: 1958958157}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 519420036}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShakeCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraShake, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2162962133582078120, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
+      propertyPath: _onShoot.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00f15e1137f783146b8f664026a7c6ca, type: 3}
 --- !u!1001 &8439668342705583056

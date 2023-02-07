@@ -57,7 +57,7 @@ public class Projectile : MonoBehaviour
                 _flybySource.Play();
             }
         }
-        else if (collision.collider.TryGetComponent(out Damagable entity))
+        if (collision.collider.TryGetComponent(out Damagable entity))
         {
             if (collision.gameObject.tag == "Enemy" && !_spawnedByPlayer || collision.gameObject.tag == "Player" && _spawnedByPlayer)
             {

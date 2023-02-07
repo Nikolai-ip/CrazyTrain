@@ -15,6 +15,6 @@ public class BulletUI : MonoBehaviour
     public void Disable()
     {
         IsEnable = false;
-        gameObject.SetActive(false);
+        gameObject?.SetActive(false);
     }
 }
